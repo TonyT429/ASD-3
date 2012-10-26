@@ -2,7 +2,7 @@
 Title:  style.css  
 Author:   Anthony Torrez
 Date:  July 17, 2012
-CSS styles for my MIU 1207 Project
+CSS styles for my ASD 1210 Week2 Project
 */
  
 
@@ -49,8 +49,8 @@ fieldset {
 
 p {
 	margin: 20 px;
-	color: white;
-	font-size: 14px;
+	color: yellow;
+	font-size: 18px;
 	text-align: align left;
 	text-indent: 20 px;
 	font: verdana, tehoma, geneva ;
@@ -80,4 +80,8 @@ input {
 
 label {
 	position: right;
+}
+
+h3 {
+	color: indigo;
 }

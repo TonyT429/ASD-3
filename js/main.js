@@ -1,21 +1,14 @@
-// MIU 1207 Week 3
-// Anthony Torrez
+//  Anthony Torrez
+//  ASD 1210 Week3
 
-
-
-// JQuery file
-
-var parseBookform = function(data){
-	// uses the form data here:
-	console.log(data);
-};
-
-$(document).bind('pageinit', function(){
-
+$('#home').on('pageinit', function(){
+	//code needed for home page goes here
+});	
+		
+		
+$('#addItem').on('pageinit', function(){
 	var rbform = $('#recordbooksform'),
-		rberrorslink = $('#rberrorslink')
-	;
-	
+		rberrorslink = $('#rberrorslink');
 	rbform.validate({
 		invalidHandler: function(form, validator){
 			rberrorslink.click();
@@ -34,268 +27,312 @@ $(document).bind('pageinit', function(){
 		submitHandler: function() {
 			var data = rbform.serializeArray();
 			localStorage.setItem('rbform', data);
-			parseBookform(data);
+			storeData(data);
 		}
 	});
-	
-		// getElementById Function
-	function MiU(x) {
-		var ElementX = document.getElementById(x);
-		return ElementX;
-	}
-	
-		// Get value of selected Radio Button
-	function getSelectedRadio( ) {
-		var rbuttons = document.forms[0].isaseries;
-		console.log(rbuttons);
-		for ( var i=0; i < rbuttons.length; i++ ) {
-			if ( rbuttons[ i ].checked) {
-			isaseries = rbuttons[ i ].value;
-			}
-		}
-	}
-	
-	function toggleControls( n ) {
-		switch( n ) {
-			case "on":
-				MiU( 'recordbooksform').style.display = "inline";  // hide the form
-				MiU( 'clearLink' ).style.display = "block";
-				MiU( 'displayLink' ).style.display = "inline";
-				//  MiU( 'refresh' ).style.display = "block";
-				break;
-			case "off":
-				MiU( 'recordbooksform').style.display = "inline";
-				MiU( 'clearLink' ).style.display = "block";
-				MiU( 'displayLink' ).style.display = "block";
-				// MiU( 'refresh' ).style.display = "block";  // decided to keep refresh option available at all times.
-				MiU( 'items' ).style.display = "block";
-				break;
-			default:
-			return false;
-		}
-	}
-    
-    	//	console.log(localStorage);
-    		
-    		
-        	function storeData(key) {
-		// If there is no key, then this is a brand new item and needs a key.
-		if (!key) {
-			var id = Math.floor(Math.random( )*1000000001); // collect and store all form field values as a object.
-		} else {	
-			var id = key;
-		// Set the id of the existing key we're editing so that it will save over the data
-		// This is the same key that has been passed along from the editSubmit event handler
-		// to the Validate function, and then passed here, into the storeData function
-			
-		}
-		getSelectedRadio( ); // calls the value of the radio button
-		var item = { };
-			item.genre = [ "Genre:", MiU( 'genre' ).value ];
-			item.btitle = [ "Book Title:", MiU( 'btitle' ).value ];
-			item.author = [ "Author:", MiU( 'author' ).value ];
-			item.isbn = [ "ISBN #:", MiU( 'isbn' ).value ];
-			item.comments = ["Comments:", MiU( 'comments' ).value ];
-			item.series = [ "Series:", isaseries ]; // for radio buttons
-			item.seriesname = [ "Series Name:", MiU( 'seriesname' ).value ];
-			item.seriesnum = [ "Series Number:", MiU( 'seriesnum' ).value ];
-			item.date = [ "Date:", MiU( 'date' ).value ];    // correcting missing date field
-			// Save data to local storage using JSON stringify to convert objects to a string.
-			localStorage.setItem( id, JSON.stringify( item ) );
-		alert ("Saved" );
-		}
-		
-			function autoFillData( ) {
-		// The actual JSON object data required for this to work is coming from the json.js which is loaded from the html page.
-     	// Store the JSON data into local storage
-		for (var n in json) {
-			var id = Math.floor(Math.random( )*1000000001);
-			localStorage.setItem(id, JSON.stringify(json[n]));
-		}
-	}
-	
-	function editItem( ) {
-		// take the item data from local storage
-		var value = localStorage.getItem( this.key );
-//		console.log(getItem(this.key);
-		var item = JSON.parse( value );
-		var save = MiU ( 'submit' );
-        
-		// Show the form
-		toggleControls( "off" );
-        
-		// populate the form with current localStorage values.
-		MiU( 'genre' ).value = item.genre[1];
-		MiU( 'btitle' ).value = item.btitle[1];
-		MiU( 'author' ).value = item.author[1];
-		MiU( 'isbn' ).value = item.isbn[1];
-		MiU( 'comments' ).value = item.comments[1];
-		MiU( 'seriesname' ).value = item.seriesname[1];
-		MiU( 'seriesnum' ).value = item.seriesnum[1];
-		MiU( 'date' ).value = item.date[1];    // correcting missing date field
-		var radios = document.forms[0].isaseries;
-			for ( var i=0; i<radios.length; i++ ) {
-				if ( radios[i].value == "No" && item.series[1] == "No" ) {
-					radios[i].setAttribute("checked", "checked" );
-			} else if( radios[i].value == "Yes" && item.series[1] == "Yes" ) {
-				radios[i].setAttribute( "checked", "checked" );
-			}
-		}
-
-		save.removeEventListener( "click", storeData );
-		// Change the submit button value to Edit button
-		MiU( 'submit' ).value = "Edit Book Info";
-		var editSubmit = MiU( 'submit' );
-		// Save the key value established in this function as a property of the editSubmit event
-		// so it can be used when we save the edited data.
-		editSubmit.addEventListener( "click", validate );
-		editSubmit.key = this.key;
-    }
-    
-    function deleteItem( ) {
-		var ask = confirm( "Are you sure you want to delete this book?" );
-		if (ask) {
-			localStorage.removeItem( this.key );
-			alert ( "The book has been deleted");
-			window.location.reload( );
-		} else {
-			alert ( "The book was NOT deleted");
-		}
-	}
-	
-		// Make Item Links - create the edit and delete links for each item when displayed.
-	function makeItemLinks( key, linksLi ) {
-		// add edit single item link
-		var editLink = document.createElement( 'a' );
-		editLink.href = "#";
-		editLink.key = key;
-		console.log(editLink.key);
-		var editText = "Edit Book Info";
-		editLink.addEventListener( "click", editItem );
-		editLink.innerHTML = editText;
-		linksLi.appendChild( editLink );
-        
-		// add a line break
-		var breakTag = document.createElement( 'br' );
-		linksLi.appendChild( breakTag );
-        
-		// add delete single item link
-		var deleteLink = document.createElement( 'a' );
-		deleteLink.href = '#';
-		deleteLink.key = key;
-		var deleteText = "Delete Book Info";
-		deleteLink.addEventListener( "click", deleteItem );
-		deleteLink.innerHTML = deleteText;
-		linksLi.appendChild( deleteLink );
-	}
-	
-		// Get the image for the genre being displayed
-	function getImage( catName, makeSubList ) {
-		var imageLi = document.createElement( 'li' );
-		makeSubList.appendChild( imageLi );
-		var newImg = document.createElement( 'img' );
-		var setSrc = newImg.setAttribute( "src", "../images/" + catName + ".png" );
-		imageLi.appendChild(newImg);
-	}
-
-		function getData ( ) {
-		toggleControls( "on" );
-		if (localStorage.length === 0 ) {
-			alert ( "There is no data in Local Storage so default data was added." );
-			autoFillData();
-		}
-		var makeDiv = document.createElement( 'div' );
-		makeDiv.setAttribute( "id", "items" );
-		var makeList = document.createElement( 'ul' );
-		makeDiv.appendChild( makeList );
-		document.body.appendChild( makeDiv );
-		document.getElementById("myLibrary").appendChild(makeDiv);
-		MiU( 'items' ).style.display = "block";
-		for (var i=0, len=localStorage.length; i<len; i++ ) {
-			var makeli = document.createElement( 'li' );
-			var linksLi = document.createElement( 'li' );
-			makeList.appendChild( makeli );
-			var key = localStorage.key( i );
-//			console.log(key);
-			var value = localStorage.getItem( key );
-			// Convert the string from local storage value back to an object by using stringify
-			var obj = JSON.parse( value );
-			var makeSubList = document.createElement( 'ul' );
-			makeli.appendChild( makeSubList );
-			getImage( obj.genre[1], makeSubList );
-			for (var n in obj ) {
-				var makeSubli = document.createElement( 'li' );
-				makeSubList.appendChild( makeSubli );
-				var optSubText = obj[ n ] [ 0 ]+ " " +obj[ n ] [ 1 ];
-				makeSubli.innerHTML = optSubText;
-				makeSubList.appendChild(linksLi);
-			}
-		makeItemLinks( localStorage.key(i), linksLi); // create the edit and delete buttons or links for each item in local storage.
-		}
-	}
-	
-	
-	function clearLocData( ) {
-		if (localStorage.length === 0) {
-			alert ( "This is no data to clear." );
-		} else {
-			localStorage.clear( );
-			alert( "All contacts are deleted!" );
-			window.location.reload( );
-			return false;
-		}
-	}
-	
-	var parseEventForm = function(data) {              //use data store
-		storeData();
-		console.log(localStorage);
-	};
-	
-	var displayLink = MiU ( 'displayLink' );
-	displayLink.addEventListener ( 'click', getData );
-    
-	var clearLink = MiU ( 'clearLink' );
-	clearLink.addEventListener ( 'click', clearLocData );
-
-	var save = MiU ( 'submit' );
-	save.addEventListener ( 'click', storeData );
-
-
-
-
-/*
-	function getLib() {
-		var bookShelf = "";  
-		var b = 0;
-		// get the number of items in storage starting at 0
-		var storeLength = localStorage.length-1;
-		for (b = 0; b < storeLength; b++) {
-			var bookKey = localStorage.key(b);
-			var values = localStorage.getItem(bookKey);
-			values = values.split(";");
-			var v1 = values[0];
-			var v2 = values[1];
-			var v3 = values[2];
-			var v4 = values[3];
-			var v5 = values[4];
-			var v6 = values[5];
-			var v7 = values[6];
-			var v8 = values[7];
-			
-			bookShelf += '<li>Book Title:'+v1+' Author: '+v2+' ? '+v3+' ? '+v4+' ? '+v5+' ? '+v6+' ? '+v7+' ? '+v8;
-		}   
-		
-		// if there are no items in storage
-		if(bookShelf === "") {
-			bookShelf = '<li class="empty">No books in storage</li>';
-		
-		$("theLibrary").html(bookShelf);
-		}
-	}
-	
-	
-	getLib();   */
 });
 
 
+var autofillData = function (){
+	 for(var b in json) {
+	 	var id = Math.floor(Math.random() * 1000001);
+	 	localStorage.setItem(id, JSON.stringify(json[b]));
+	 	console.log(json);
+	 }
+};
 
+
+	function toggleControls(n){
+		switch(n) {
+			case "on":
+				$("#addItem").css("display", "none");
+				$('#getBookList').css("display", "none");
+				$('#display').css("display", "block");				
+				break;
+			case "off":
+				$("#addItem").css("display", "block");
+				$('#getBookList').css("display", "inline");
+				break;
+			default:
+				return false;
+		}
+	}
+
+$('#theLibrary').on('click', function(){
+     $('#bookhelf').empty();
+	// Check to see if there is any data in local storage.  Import JSON data if empty.
+	function getBookList() {
+		toggleControls("on");
+		if(localStorage.length === 0) {
+			alert("Your bookshelf was empty so example books were added");
+			autofillData();
+		}
+		var makeBookLinks = function(key, listLi) {
+		var deleteLink = $(listLi).append('<a href="#">Delete Book Information</a>');
+		deleteLink.key = key;
+		$('#deleteLink').on('click', deleteLink);
+		var list = $.find('#listOfBooks');
+		$('#bookList').attr('id', 'items');
+		for (var i = 0, j = localStorage.length; i < j; i++) {
+			var makeLi = $('<li class="bookItem"></li>').appendTo(list);
+			var liLinks = $('<li class="bookLink"></li>').appendTo(list);
+			var key = localStorage.key(i);
+			var value = localStorage.getItem(key);
+			var object = JSON.parse(value);
+			for(var x in object){
+				$('<p>' + object[x][0] + object[x][1] + '</p>').appendTo(makeLi);
+			}
+			console.log(x);
+			makeBookLinks(localStorage.key(i), liLinks);
+		}
+		$('#bookshelf').listview('refresh');	
+	};
+	
+	
+//	var makeBookLinks = function(key, listLi) {
+//		var deleteLink = $(listLi).append('<a href="#">Delete Book Information</a>');
+//		deleteLink.key = key;
+//		$('#deleteLink').on('click', deleteLink);
+//		var editLink = $(liLinks).append('<a href="#">Edit Book Information</a>');
+//		editLink.key = key;
+//		$('editLink').on('click', editItem);
+//	}
+
+
+// Get value of selected Radio Button 
+var selectedRadio = function() {
+	return $("input:radio[name=series]:checked").val();
+};
+
+
+var storeData = function(key) {
+	if (!key) {
+		var id = Math.floor(Math.random() * 1000001);
+	} else {
+		id = key;
+		button = selectedRadio();  //calls the value of the radio button
+		var item = {};
+			item.genre = ["Genre:", $('#genre').val()];
+			item.title = ["Book Title:", $('#title').val()];
+			item.author =["Author:",$('#author').val()];
+			item.isbn = ["ISBN:",$('#isbn').val()];
+			item.comments = ["Comments:",$('#comments').val()];
+			item.rate = ["Rate:",$('#rate').val()];
+			item.series = ["Series:",button];
+			item.seriesname = ["Series Name:",$('#seriesname').val()];
+			item.seriesnum = ["Series Number:",$('#seriesnum').val()];
+			item.date = ["Date:",$('#date').val()];
+			console.log(item);
+			localStorage.setItem(id, JSON.stringify( item) );
+	}
+	return false;
+}; 
+
+$('#theLibrary').on('pageinit', function(){
+
+	// Serialization of XML Data
+	$('#xmlBooks').on('click', function() {
+     	$('#theShelf').empty();
+		$.ajax({
+	        	url: 'xhr/data.xml',
+	            type: 'GET',
+	            dataType: 'xml',
+	            success: function(xml) {
+	                $(xml).find('item').each(function() {
+	                    var item = $(this).find('item').text();
+	                    var title = $(this).find('title').text();
+					var author = $(this).find('author').text();
+	                    var isbn = $(this).find('isbn').text();
+	                    var comments = $(this).find('comments').text();
+	                    var rate = $(this).find('rate').text();                    
+	                    var series = $(this).find('series').text();
+	                    var seriesName = $(this).find('seriesName').text();
+	                    var seriesNum = $(this).find('seriesNum').text();
+	                    var date = $(this).find('date').text();
+                         $("" +
+                             '<li>' +
+                                 '<h3>Title:  ' + title + '</h3>' +
+                                   '<p>Author:  ' + author + '</p>' +
+                                   '<p>ISBN:  ' + isbn + '</p>' +
+                                   '<p>Comments:  ' + comments + '</p>' +
+                                   '<p>Rate:  ' + rate + '</p>' +
+                                   '<p>Series:  ' + series + '</p>' +
+                                   '<p>Series Name:  ' + seriesName + '</p>' +
+                                   '<p>Number in Series:  ' + seriesNum + '</p>' +
+                                   '<p>Date:  ' + date + '</p>' +
+                              '</li>'
+                              ).appendTo('#theShelf');
+                              $('#theShelf').listview('refresh');
+				});
+            	}
+	    });
+	});
+
+
+     
+     
+// Serialization of JSON Data
+    $('#jsonBooks').on('click', function() {
+          $('#theShelf').empty();
+          $.ajax({
+			url: 'xhr/data.json',
+			type: 'GET',
+               dataType: 'json',
+               success: function(responseText) {
+                   for (var i=0, j=responseText.items.length; i<j; i++){
+					var book = responseText.items[i];
+                         	$(""+
+                         	'<li>' +
+                                    '<h3>Title:  ' + book.title + '</h3>' +
+                                  	 '<p>Author:  ' + book.author + '</p>' +
+                                  	 '<p>Genre:  ' + book.genre + '</p>' +
+                                	 '<p>ISBN:  ' + book.isbn + '</p>' +
+                                    '<p>Comments:  ' + book.comments + '</p>' +
+                                    '<p>Series:  ' + book.series + '</p>' +
+                                    '<p>Series Name:  ' + book.seriesName + '</p>' +
+                                    '<p>Number in Series:  ' + book.seriesNum + '</p>' +
+                                    '<p>Date:  ' + book.date + '</p>' +
+						'</li>'
+						).appendTo('#theShelf');
+                              $("#theShelf").listview("refresh");
+                              	console.log("Working");
+                              	console.log(responseText);
+                    }
+			}  
+          });
+     });
+     return false;
+});
+
+var	deleteItem = function (){
+	var verify = confirm('Delete this book?');
+	if(verify) {
+		localStorage.removeItem(this.key);
+		window.location.reload();
+	} else {
+		alert ("Book Deletion Cancelled");
+	}		
+};	
+
+	
+$('#display').on('click', display);
+	function display() {
+		if (localStorage.length === 0){
+			alert("There are no books to display");
+			autofillData();
+		} else {
+		getBookList();
+		}
+	};
+			
+					
+$('#clearLocal').on('click', clearLocal);
+	function clearLocal() {
+		if(localStorage.length === 0) {
+			alert("The bookshelf is empty, nothing to clear.");
+		} else {
+			localStorage.clear();
+			alert("Bookshelf cleared, all books removed.");
+			window.location.reload();
+			return false;
+		}
+	};
+	
+
+var editItem = function () {
+	var value = localStorage.key(this.key);
+	var item = JSON.parse(value);
+	$('title').value = item.title[1];
+	$('author').value = item.author[1];
+	$('genre').value = item.genre[1];
+	$('isbn').value = item.isbn[1];
+	$('series').value = item.series[1];
+	$('seriesName').value = item.seriesName[1];
+	$('seriesNum').value = item.seriesNum[1];
+	$('comments').value = item.comments[1];
+	$('rate').value = item.rate[1];
+	$('date').value = item.date[1];
+	$('#editItem').on('click', saveData);  
+	$('storeData').val() = 'Edit';
+	var editStoreData = $('storeData');
+	$('#editStoreData').on('click', validate);
+	editStoreData.key = this.key;	
+}
+
+// Week 2 Data Serialization
+$('#serial').on('pageinit', function(){
+
+	// Serialization of XML Data
+	$('#xmlBooks').on('click', function() {
+     	$('#theShelf').empty();
+		$.ajax({
+	        	url: 'xhr/data.xml',
+	            type: 'GET',
+	            dataType: 'xml',
+	            success: function(xml) {
+	                $(xml).find('item').each(function() {
+	                    var item = $(this).find('item').text();
+	                    var title = $(this).find('title').text();
+					var author = $(this).find('author').text();
+	                    var isbn = $(this).find('isbn').text();
+	                    var comments = $(this).find('comments').text();
+	                    var rate = $(this).find('rate').text();                    
+	                    var series = $(this).find('series').text();
+	                    var seriesName = $(this).find('seriesName').text();
+	                    var seriesNum = $(this).find('seriesNum').text();
+	                    var date = $(this).find('date').text();
+                         $("" +
+                             '<li>' +
+                                 '<h3>Title:  ' + title + '</h3>' +
+                                   '<p>Author:  ' + author + '</p>' +
+                                   '<p>ISBN:  ' + isbn + '</p>' +
+                                   '<p>Comments:  ' + comments + '</p>' +
+                                   '<p>Rate:  ' + rate + '</p>' +
+                                   '<p>Series:  ' + series + '</p>' +
+                                   '<p>Series Name:  ' + seriesName + '</p>' +
+                                   '<p>Number in Series:  ' + seriesNum + '</p>' +
+                                   '<p>Date:  ' + date + '</p>' +
+                              '</li>'
+                              ).appendTo('#theShelf');
+                              $('#theShelf').listview('refresh');
+				});
+            	}
+	    });
+	});
+
+
+     
+     
+// Serialization of JSON Data
+    $('#jsonBooks').on('click', function() {
+          $('#theShelf').empty();
+          $.ajax({
+			url: 'xhr/data.json',
+			type: 'GET',
+               dataType: 'json',
+               success: function(responseText) {
+                   for (var i=0, j=responseText.items.length; i<j; i++){
+					var book = responseText.items[i];
+                         	$(""+
+                         	'<li>' +
+                                    '<h3>Title:  ' + book.title + '</h3>' +
+                                  	 '<p>Author:  ' + book.author + '</p>' +
+                                  	 '<p>Genre:  ' + book.genre + '</p>' +
+                                	 '<p>ISBN:  ' + book.isbn + '</p>' +
+                                    '<p>Comments:  ' + book.comments + '</p>' +
+                                    '<p>Series:  ' + book.series + '</p>' +
+                                    '<p>Series Name:  ' + book.seriesName + '</p>' +
+                                    '<p>Number in Series:  ' + book.seriesNum + '</p>' +
+                                    '<p>Date:  ' + book.date + '</p>' +
+						'</li>'
+						).appendTo('#theShelf');
+                              $("#theShelf").listview("refresh");
+                              	console.log("Working");
+                              	console.log(responseText);
+                    }
+			}  
+          });
+     });
+     return false;
+});
+     	

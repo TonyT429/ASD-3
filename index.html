@@ -1,5 +1,5 @@
-<!-- Anthony Torrez -->
-<!--  ASD 1211 Week1 -->
+<!--  Anthony Torrez -->
+<!--  ASD 1210 Week2 -->
 <!doctype html>  
 <html lang="en">
 <head>
@@ -17,563 +17,87 @@
 	<meta http-equiv="cleartype" content="on"/>
 	
 	<!-- StyleSheets under here -->
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/latest/jquery.mobile.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
 	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/mobile/latest/jquery.mobile.min.css" />
-    <link rel="stylesheet" type="text/css" href="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.min.css" /> <link rel="stylesheet" type="text/css" href="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.min.css" />
+     <link rel="stylesheet" type="text/css" href="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.min.css" /> 
 	<link rel="stylesheet" href="css/themes/myNewTheme.min.css" />
 	<link rel="stylesheet" href="css/styles.css" /> 
-
 	<style type="text/css">
 		.ui-page {
-			background: transparent url(images/PecanBackground.png);
+			background: transparent url(images/PecanBackground.png);  <!-- thinking of changing this background -->
 		}
 	</style>
-
 	
 	<!-- JavaScript is normally at the end of the body, except for Modernizr which enables HTML5 elements & feature detects -->
 	<script src="js/libs/modernizr.custom.min.js"></script>
-	
 
 </head>
 <body>
+
 <!-- Home Page -->
 	<div data-role="page" id="home">
 		<div data-role="header" data-position="fixed" >
 			<img src="images/BookTrackerLogo.png" height="60" width="160" data-inline="true" /> 
 			<label>Home</label>		
-	     </div><!--Close Header-->
+		</div><!--Close Home Page Header-->
 			
 		<div data-role="content" >
-			<img src="images/CTAImage.png" alt="Logo" height="200" width="290" />
-			<p><a href="#recordbooks" data-role="button"  data-mini="true" data-theme="a" data-icon="arrow-r" data-iconpos="right" data-ajax="false">Add a Book Now</a></p>
-	
-		</div><!--Close Content-->
+			<img src="images/CTA.png" alt="Logo" height="200" width="290" />
+			<div data-role='fieldcontain'>
+				<a href="#addItem" data-role="button"  data-mini="true" data-theme="a" data-icon="arrow-r" data-iconpos="right" data-ajax="false">Add a Book Now</a> 
+			</div> 
+
+		</div><!--Close Home Page Content-->
+		
 		<div data-role="footer" data-position="fixed" data-id="home">
 			<div data-role="navbar">
 				<ul>
-					<li><a href="#search" data-role="button"  data-mini="true" data-iconpos="right"  value="search" id="search" data-ajax="false">Search</a></li>
-					<li><a href="#browse" data-role="button"  data-mini="true" data-iconpos="right"  value="browse" id="browse" data-ajax="false">Browse</a></li>
+					<li><a href="#search" data-role="button"  data-mini="true" data-iconpos="right"  value="search" class="search" data-ajax="false">Search</a></li>
+					<li><a href="#browse" data-role="button"  data-mini="true" data-iconpos="right"  value="browse" class="browse" data-ajax="false">Browse</a></li>
 					<li><a href="#newsfeed" data-role="button"  data-mini="true" data-iconpos="right"  data-ajax="false">RSS Feed</a></li>
 				</ul>
 			</div><!--Close Navbar-->
 		</div><!--Close Footer-->
-	</div><!--Close Home-->
-	
-<!-- Under Construction Page -->
-	<div data-role="page" id="underConst">
-		<div data-role="header" data-position="fixed">
-			<div>
-				<a href="#home" alt="home" data-inline="true" data-ajax="false">
-					<img src="images/BookTrackerLogo.png" height="60" width="160" data-inline="true" />
-				</a>
-				<label data-inline="true">Sorry!</label>	
-			</div>
-		</div>
-		
-		<div data-role="content">
-			<img src="images/diy_puppy.png"/>
-			<p>Requested Page is Under Construction!</p>
-			<p>Free image courtesy of FreeDigitalPhotos.net</p>
-			<p>Image: <a href="http://www.freedigitalphotos.net" target="_blank">FreeDigitalPhotos.net</a></p>
-		</div>
-		
-		<div data-role="footer" data-position="fixed" data-id="home">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#search" data-role="button" data-mini="true" data-iconpos="right"  value="search" id="search" data-ajax="false">Search</a></li>
-					<li><a href="#browse" data-role="button" data-mini="true" data-iconpos="right"  value="browse" id="browse" data-ajax="false">Browse</a></li>
-					<li><a href="#newsfeed" data-role="button" data-mini="true" data-iconpos="right"  data-ajax="false">RSS Feed</a></li>
-				</ul>
-			</div>
-		</div>
 	</div>
-	
-<!-- Browse by Genre Page -->
-	<div data-role="page" id="by_genre">
-		<div data-role="header" data-position="fixed">
-			<div>
-				<a href="#home" alt="home" data-inline="true" data-ajax="false">
-					<img src="images/BookTrackerLogo.png" height="60" width="160" data-inline="true" />
-				</a>	
-				<label data-inline="true">By Genre</label>
-			</div>
-		</div>	
-			
-		<div data-role="content" >
-			<div data-role="collapsible-set" data-theme="a">
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Art & Photography.png" />
-					<h4>Art & Photography</h4>
-					<p>You have no books of this genre at the moment</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<h4>Biographies & Memoirs</h4>
-					<img src="images/Biographies & Memoirs.png" />
-					<p>You have no books of this genre at the moment</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Children's Books.png" />
-					<h4>Children"s Books</h4>
-					<p>You have no books of this genre at the moment</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Computers & Technology.png" />
-					<h4>Computers & Technology</h4>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Cookbooks, Food & Wine.png" />
-					<h4>Cookbooks, Food & Wine</h4>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Crafts, Hobbies & Home.png" />
-					<h4>Crafts, Hobbies & Home</h4>
-					<p>You have no books of this genre at the moment</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Education & Reference.png" />
-					<h4>Education & Reference</h4> 
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Health, Fitness & Dieting.png" />
-					<h4>Health, Fitness & Dieting</h4>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/History.png" />
-					<h4>History</h4>
-					<p>You have no books of this genre at the moment</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Horror.png" />
-					<h4>Horror</h4>
-					<p>You have no books of this genre at the moment</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Humor.png" />
-					<h4>Humor</h4>
-					<p>You have no books of this genre at the moment</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Law.png" />
-					<h4>Law</h4>
-				<p>You have no books of this genre at the moment</p>
-			</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Literature & Fiction.png" />
-					<h4>Literature & Fiction</h4>
-					<p>You have no books of this genre at the moment</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Manga & Graphic Novels.png" />
-					<h4>Manga & Graphic Novels</h4> 
-					<p>You have no books of this genre at the moment</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Math & Science.png" />
-					<h4>Math & Science</h4>
-					<p>You have no books of this genre at the moment</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Medical.png" />
-					<h4>Medical</h4>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Mystery, Crime, Thriller & Suspense.png" />
-					<h4>Mystery, Crime, Thriller & Suspense</h4>
-					<p>You have no books of this genre at the moment</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Parenting & Relationships.png" />
-					<h4>Parenting & Relationships</h4>
-					<p>You have no books of this genre at the moment</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Religion & Spirituality.png" />
-					<h4>Religion & Spirituality</h4>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Romance.png" />
-					<h4>Romance</h4> 
-					<p>You have no books of this genre at the moment</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Sci Fi & Fantasy.png" />
-					<h4>Sci Fi & Fantasy</h4>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Self Help.png" />
-					<h4>Self Help</h4>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Sports & Outdoors.png" />
-					<h4>Sports & Outdoors</h4>
-					<p>You have no books of this genre at the moment</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Teens.png" />
-					<h4>Teens</h4>
-					<p>You have no books of this genre at the moment</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Travel.png" />
-					<h4>Travel</h4>
-					<p>You have no books of this genre at the moment</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<img src="images/Western.png" />
-					<h4>Western</h4>
-				</div>
-			</div>
-		</div>
-			
-		<div data-role="footer" data-position="fixed" data-id="home">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#search" data-role="button" data-mini="true" data-iconpos="right"  value="search" id="search" data-ajax="false">Search</a></li>
-					<li><a href="#browse" data-role="button" data-mini="true" data-iconpos="right"  value="browse" id="browse" data-ajax="false">Browse</a></li>
-					<li><a href="#newsfeed" data-role="button" data-mini="true" data-iconpos="right"  data-ajax="false">RSS Feed</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	
-<!-- Browse by Author Page -->
-	<div data-role="page" id="by_author">
+<!--Close Home-->
+
+<!-- The Library -->
+	<div data-role="page" id="getBookList">
 		<div data-role="header"  data-position="fixed">
 			<div>
 				<a href="#home" alt="home" data-inline="true" data-ajax="false">
 					<img src="images/BookTrackerLogo.png" height="60" width="160" data-inline="true" />
-				</a>
-				<label data-inline="true">By Author</label>	
+				</a>	
+				<label data-inline="true">The Library</label>
 			</div>
-		</div>		
+		</div>
 		
-		<div data-role="content" >		
-			<div data-role="collapsible-set" data-theme="a">
-				<div data-role="collapsible" data-collapsed="true" >
-					<h4>A - C</h4>
-					<p>Keri Arthur</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<h4>D - F</h4>
-					<p>No Authors in this list</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<h4>G - I</h4>
-					<p>Zane Grey</p>
-					<p>Dr. John Heinerman</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<h4>J - L</h4>
-					<p>Robert T. Kiyosaki</p>
-					<p>Robert E. Kowalski</p>
-					<p>J. F. Lewis</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<h4>M - O</h4>
-					<p>John C. Maxwell</p>
-					<p>Mike McGrath</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<h4>P - R</h4>
-					<p>Shelley Powers</p>
-					<p>Dr. Stefan Ripich</p>
-					<p>Anthony Robbins</p>
-					<p>Ann Rolbin</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<h4>S - U</h4>
-					<p>Gary Scheiner</p>
-					<p>Mark Schneider</p>
-					<p>Jennifer Tidwell</p>
-					<p>Edward Topol</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<h4>V - Z</h4>
-					<p>Carrie Vaughn</p>
-					<p>Dr. Julian Whitaker</p>
-				</div>
+		<div data-role="content">
+			<div data-role="fieldcontain">
+				<a href="#" data-role="button" id="myLibrary" data-theme="a" data-mini="true" data-icon="arrow-r" data-iconpos="right"  data-ajax="false">CouchDB Data</a>
 			</div>	
 		</div>
-			
-		<div data-role="footer" data-position="fixed" data-id="home">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#search" data-role="button" data-mini="true" data-iconpos="right"  value="search" id="search" data-ajax="false">Search</a></li>
-					<li><a href="#browse" data-role="button" data-mini="true" data-iconpos="right"  value="browse" id="browse" data-ajax="false">Browse</a></li>
-					<li><a href="#newsfeed" data-role="button" data-mini="true" data-iconpos="right"  data-ajax="false">RSS Feed</a></li>
-				</ul>
-			</div>
+		<div>
+			<ul id="bookshelf" data-role="listview" class="ui-body-a"></ul>
 		</div>
-	</div>
-	
-<!-- Browse by Title Page -->
-	<div data-role="page" id="by_title">
-		<div data-role="header"  data-position="fixed">
-			<div>
-				<a href="#home" alt="home" data-inline="true" data-ajax="false">
-					<img src="images/BookTrackerLogo.png" height="60" width="160" data-inline="true" />
-				</a>
-				<label data-inline="true">By Title</label>	
-			</div>
-
-		</div>		
 		
-		<div data-role="content" >
-			<div data-role="collapsible-set" data-theme="a">
-				<div data-role="collapsible" data-collapsed="true" >
-					<h4>A - C</h4>
-					<p>Awaken The Giant Within: Anthony Robbins</p>
-					<p>Becoming a Person of Influence: John C. Maxwell</p>
-					<p></p>
-					<p>Burned: J.F. Lewis</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<h4>D - F</h4>
-					<p>Dermo: Edward Topol</p>
-					<p>Designing Interfaces: Jenifer Tidwell</p>
-					<p>Easy Russian Phrasebook and Dictionary: Ann Rolbin</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<h4>G - I</h4>
-					<p>Get Control of Your Blood Sugars: Gary Scheiner</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<h4>J - L</h4>
-					<p>Javascript Cookbook: Shelley Powers</p>
-					<p>Javescript In Easy Steps: Mike McGrath</p>
-
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<h4>M - O</h4>
-
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<h4>P - R</h4>
-					<p>Rich Dad, Poor Dad: Robert T. Kiyosaki</p>
-	
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<h4>S - U</h4>
-					<p>The 21 Irrefutable Laws of Leadership: John C. Maxwell</p>
-					<p>The 30 Day Diabetes Cure: Dr Stefan Ripich</p>
-					<p>The 8 Week Cholesterol Cure: Robert E. Kowalski</p>
-					<p>The Best of the Bottle: Mark Schneider</p>
-				</div>
-				<div data-role="collapsible" data-collapsed="true" >
-					<h4>V - Z</h4>
-				</div>
-			</div>
-		</div>
-				
 		<div data-role="footer" data-position="fixed" data-id="home">
 			<div data-role="navbar">
 				<ul>
-					<li><a href="#search" data-role="button" data-mini="true" data-iconpos="right"  value="search" id="search" data-ajax="false">Search</a></li>
-					<li><a href="#browse" data-role="button" data-mini="true" data-iconpos="right"  value="browse" id="browse" data-ajax="false">Browse</a></li>
+					<li><a href="#search" data-role="button" data-mini="true" data-iconpos="right"  value="search" class="search" data-ajax="false">Search</a></li>
+					<li><a href="#browse" data-role="button" data-mini="true" data-iconpos="right"  value="browse" class="browse" data-ajax="false">Browse</a></li>
 					<li><a href="#newsfeed" data-role="button" data-mini="true" data-iconpos="right"  data-ajax="false">RSS Feed</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-	
-<!-- Search -->
-	<div data-role="page" id="search">
-		<div data-role="header"  data-position="fixed">
-			<div>
-				<a href="#home" alt="home" data-inline="true" data-ajax="false">
-					<img src="images/BookTrackerLogo.png" height="60" width="160" data-inline="true" />
-				</a>
-				<label data-inline="true">Search</label>		
-			</div>
-		</div>
-			
-		<div data-role="content" >
-			<div data-role="collapsible-set" data-theme="a" >
-				<ul data-role="listview" data-inset="true" data-filter="true">
-					<li data-role="list-divider" >Non-Fiction</li>
-					<li>
-						<img src="images/Art & Photography.png" />
-						<h4>Art & Photography</h4>
-						<p>Currently there are no books listed under this genre</p>
-					</li>
-					<li>
-						<img src="images/Biographies & Memoirs.png" />
-						<h4>Biographies & Memoirs</h4>
-						<p>Currently there are no books listed under this genre</p>
-					</li>
-					<li>
-						<img src="images/Computers & Technology.png" />
-						<h4>Computers & Technology</h4>
-						<p> Book Title: Javascript Cookbook,  Author: Shelley Powers</p>
-						<p>Book Title: JavaScript in Easy Steps,  Author: Mike McGrath</p>
-						<p>Book Title: Designing Interfaces,  Author: Jenifer Tidwell</p>
-
-					</li>
-					<li>
-						<img src="images/Cookbooks, Food & Wine.png" />
-						<h4>Cookbooks, Food & Wine</h4>
-					</li>
-					<li>
-						<img src="images/Crafts, Hobbies & Home.png" />
-						<h4>Crafts, Hobbies & Home</h4>
-						<p>Currently there are no books listed under this genre</p>
-					</li>
-					<li>
-						<img src="images/Education & Reference.png" />
-						<h4>Education & Reference</h4>
-						<p>Book Title: Rich Dad, Poor Dad,  Author: Robert T. Kiyosaki</p>
-						<p>Book Title: Dermo,  Author: Edward Topol</p>
-						<p>Book Title: The 21 irrefutable Laws of Leadership,  Author: John C. Maxwell</p>
-						<p>Book Title: Easy Russian Phrasebook & Dictionary,  Author: Ann Rolbin</p>
+<!-- close The Library -->
 
 
-					</li>
-					<li>
-						<img src="images/Health, Fitness & Dieting.png" />
-						<h4>Health, Fitness & Dieting</h4>
-					</li>
-					<li>
-						<img src="images/History.png" />
-						<h4>History</h4>
-						<p>Currently there are no books listed under this genre</p>
-					</li>
-					<li>
-						<img src="images/Law.png" />
-						<h4>Law</h4>
-						<p>Currently there are no books listed under this genre</p>
-					</li>
-					<li>
-						<img src="images/Math & Science.png" />
-						<h4>Math & Science</h4>
-						<p>Currently there are no books listed under this genre</p>
-					</li>
-					<li>
-						<img src="images/Medical.png" />
-						<h4>Medical</h4>
-					</li>
-					<li>
-						<img src="images/Parenting & Relationships.png" />
-						<h4>Parenting & Relationships</h4>
-						<p>Currently there are no books listed under this genre</p>
-					</li>
-					<li>
-						<img src="images/Religion & Spirituality.png" />
-						<h4>Religion & Spirituality</h4>
-					</li>
-					<li>
-						<img src="images/Self Help.png" />
-						<h4>Self Help</h4>
-					</li>
-					<li>
-						<img src="images/Sports & Outdoors.png" />
-						<h4>Sports & Outdoors</h4>
-						<p>Currently there are no books listed under this genre</p>
-					</li>
-					<li>
-						<img src="images/Teens.png" />
-						<h4>Teens</h4>
-						<p>Currently there are no books listed under this genre</p>
-					</li>
-					<li>
-						<img src="images/Travel.png" />
-						<h4>Travel</h4>
-						<p>Currently there are no books listed under this genre</p>
-					</li>
-					<li data-role="list-divider">Fiction</li>
-					<li>
-						<img src="images/Children's Books.png" />
-						<h4>Children's Books</h4>
-						<p>Currently there are no books listed under this genre</p>
-					</li>
-					<li>
-						<img src="images/Biographies & Memoirs.png" />
-						<h4>Biographies & Memoirs</h4>
-						<p>Currently there are no books listed under this genre</p>
-					</li>
-					<li>
-						<img src="images/Horror.png" />
-						<h4>Horror</h4>
-						<p>Currently there are no books listed under this genre</p>
-					</li>
-					<li>
-						<img src="images/Humor.png" />
-						<h4>Humor</h4>
-						<p>Currently there are no books listed under this genre</p>
-					</li>
-					<li>
-						<img src="images/Literature & Fiction.png" />
-						<h4>Literature & Fiction</h4>
-						<p>Currently there are no books listed under this genre</p>
-					</li>
-					<li>
-						<img src="images/Manga & Graphic Novels.png" />
-						<h4>Manga & Graphic Novels</h4>
-						<p>Currently there are no books listed under this genre</p>
-					</li>
-					<li>
-						<img src="images/Mystery, Crime, Thriller & Suspense.png" />
-						<h4>Mystery, Crime, Thriller & Suspense</h4>
-						<p>Currently there are no books listed under this genre</p>
-					</li>
-					<li>
-						<img src="images/Romance.png" />
-						<h4>Romance</h4>
-						<p>Currently there are no books listed under this genre</p>
-					</li>
-					<li>
-						<img src="images/Sci Fi & Fantasy.png" />
-						<h4>Sci Fi & Fantasy</h4>
-						<p>Book Title:Burned,  Author: J.F. Lewis</p>
 
-					</li>
-					<li>
-						<img src="images/Western.png" />
-						<h4>Western</h4>
-					</li>
-				</ul>
-			</div>
-		</div>
-	
-		<div data-role="footer" data-position="fixed" data-id="home">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#search" data-role="button" data-mini="true" data-iconpos="right"  value="search" id="search" data-ajax="false">Search</a></li>
-					<li><a href="#browse" data-role="button" data-mini="true" data-iconpos="right"  value="browse" id="browse" data-ajax="false">Browse</a></li>
-					<li><a href="#newsfeed" data-role="button" data-mini="true" data-iconpos="right"  data-ajax="false">RSS Feed</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-		
-<!-- RSSFeed -->
-	<div data-role="page" id="newsfeed">
-		<div data-role="header"  data-position="fixed">
-			<div>
-				<a href="#home" alt="home" data-inline="true" data-ajax="false">
-					<img src="images/BookTrackerLogo.png" height="60" width="160" data-inline="true" />
-				</a>	
-				<label data-inline="true">RSS Feed</label>
-			</div>
 
-		</div>
-
-		<div data-role="content">
-			<div id="rssfeed"></div>
-		</div>
-
-		<div data-role="footer" data-position="fixed" data-id="home">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#search" data-role="button" data-mini="true" data-iconpos="right"  value="search" id="search" data-ajax="false">Search</a></li>
-					<li><a href="#browse" data-role="button" data-mini="true" data-iconpos="right"  value="browse" id="browse" data-ajax="false">Browse</a></li>
-					<li><a href="#newsfeed" data-role="button" data-mini="true" data-iconpos="right"  data-ajax="false">RSS Feed</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-
-<!-- RecordBooksForm -->
-	<div data-role="page" id="recordbooks">
+<!-- addItem page -->
+	<div data-role="page" id="addItem">
 		<div data-role="header"  data-position="fixed">
 			<div>
 				<a href="#home" alt="home" data-inline="true" data-ajax="false">
@@ -586,22 +110,22 @@
 		<div data-role="content">	
 			<div class="ui-grid-a">
 				<div class="ui-block-a">
-					<a href="#theLibrary" id="displayLink" data-inline="true" data-role="button" data-mini="true" data-icon="info" data-iconpos="right" data-theme="b" data-ajax="false">Display</a>
+					<a href="#display" id="display" data-inline="true" data-role="button" data-mini="true" data-icon="info" data-iconpos="right" data-theme="b" data-ajax="false">Display</a>
 				</div><!-- Close block-A-->
 				<div class="ui-block-b">
-			          <a href="#underConst" id="clearLink" data-inline="true" data-role="button" data-mini="true" data-icon="alert" data-iconpos="right" data-theme="c" data-ajax="false">Clear</a>		
+			          <a href="#" id="clearLocal" data-inline="true" data-role="button" data-mini="true" data-icon="alert" data-iconpos="right" data-theme="c" data-ajax="false">Clear</a>		
 			</div><!--Close block-B-->
 			</div> <!--Close Grid-a -->
-			<form action="" method="post" id="recordbooksform" >
+			<form action="#" id="recordbooksform" > 
 	<!-- Input Title -->
 				<div>
-					<label for="btitle">Book Title:</label>
-					<input type="text" placeholder="Please Enter the Book Title" data-mini="true" name="btitle" id="btitle" class="required" />
+					<label for="title">Book Title:</label>
+					<input type="text" placeholder="Please Enter the Book Title" data-mini="true" name="title" id="title" class="required" />
 				</div>
 	<!-- Input Author-->
 				<div>
 					<label for="author">Author's Name:</label>
-					<input type="text" placeholder="Please Enter the Author's name"data-mini="true" name="author" id="author" class="required" />
+					<input type="text" placeholder="Please Enter the Author's name" data-mini="true" name="author" id="author" class="required" />
 				</div>
 	<!-- Input ISBN -->
 				<div>
@@ -613,6 +137,7 @@
 					<label for="genre">Genre:</label> 
 					<select name="genre" id="genre" data-theme="a"  data-mini="true" data-native-menu="false" class="required">
 					<option data-placeholder="true">Select a Genre</option>
+						<optgroup label="Fiction">
 							<option value="child_book" >Children's Books</option>
 							<option value="horror" >Horror</option>
 							<option value="humor">Humor</option>
@@ -644,36 +169,41 @@
 				</div>
 	<!-- Radio buttons -->
 				<div>
-					<fieldset data-role=controlgroup data-type="horizontal"  data-mini="true" class="required" >
+					<fieldset data-role="controlgroup" data-type="horizontal"  data-mini="true" class="required" >
 						<legend>Part of a Series:</legend>
-						<input type="radio" value="no" name="isaseries" id="isaseries-1" checked="checked" class="required"/>
-						<label for="isaseries-1">No</label>
-						<input type="radio" value="yes" name="isaseries" id="isaseries-2" />
-						<label for="isaseries-2">Yes</label>
+						<input type="radio" value="no" name="series" id="series-1" checked="checked" class="required"/>
+						<label for="series-1">No</label>
+						<input type="radio" value="yes" name="series" id="series-2" />
+						<label for="series-2">Yes</label>
 						<p>  Please select either No or Yes"</p>
 					</fieldset>
 				</div>
-	<!-- Input BookSeries-->
+	<!-- Input Book Series-->
 				<div>
 					<label for="seriesname">Series Name:</label>
 					<input type="text" placeholder="Please enter Series name if applicable" data-mini="true" name="seriesname" id="seriesname"  />
 				</div>
+	<!-- Input Number in Series  -->
+				<div>
+					<label for="seriesnum">Number in Series:</label>
+					<input type="text" placeholder="Please Enter the Book Number in the Series - digits only" data-mini="true" name="seriesnum" id="seriesnum" class="digits" />
+				</div>
 	<!-- Rate book range slider -->
 				<div>
-					<label for="bookrate">Rate This Book:</label>
-					<input type="range" data-theme="a" data-mini="true" name="bookrate" id="bookrate" value="5" min="0" max="10" />
+					<label for="rate">Rate This Book:</label>
+					<input type="range" data-theme="a" data-mini="true" name="rate" id="rate" value="5" min="0" max="10" />
 					<br/><p>On a Scale of 1 to 10, did you like the book?</p>
 				</div>
-	<!-- Input Review -->
+	<!-- Input Comments -->
 				<div class="required">
-					<label for="bookreview">Reader Comments:</label>
-					<textarea class="required" placeholder="Please enter your opinion of this book" id="bookreview"></textarea>
+					<label for="comments">Reader Comments:</label>
+					<textarea class="required" placeholder="Please enter your opinion of this book" id="comments"></textarea>
 				</div><br />
 				
 	<!-- Date -->
 		<div>
-			<label for="mydate">Date</label>
-			<input name="mydate" id="mydate" type="date" data-role="datebox" value="Please click datebox ==>" data-options='{"mode": "calbox"}' class="required date">
+			<label for="date">Date</label>
+			<input name="mydate" id="date" type="date" data-role="datebox" value="Please click datebox ==>" data-options='{"mode": "calbox"}' class="required date"/>
    		</div>
 				
 	<!-- Reset and Submit buttons -->
@@ -695,15 +225,16 @@
 		<div data-role="footer" data-position="fixed" data-id="home">
 			<div data-role="navbar">
 				<ul>
-					<li><a href="#search" data-role="button" data-mini="true" data-iconpos="right"  value="search" id="search" data-ajax="false">Search</a></li>
-					<li><a href="#browse" data-role="button" data-mini="true" data-iconpos="right"  value="browse" id="browse" data-ajax="false">Browse</a></li>
+					<li><a href="#search" data-role="button" data-mini="true" data-iconpos="right"  value="search" class="search" data-ajax="false">Search</a></li>
+					<li><a href="#browse" data-role="button" data-mini="true" data-iconpos="right"  value="browse" class="browse" data-ajax="false">Browse</a></li>
 					<li><a href="#newsfeed" data-role="button" data-mini="true" data-iconpos="right"  data-ajax="false">RSS Feed</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
+<!-- close addItem page -->
 
-	
+
 <!-- RecordBooksErrors -->
 	<div data-role="dialog" id="recordbookserrors" >
 		<div data-role="header" data-position="fixed">
@@ -716,8 +247,178 @@
 			</ul>
 		</div>
 	</div>
+<!-- close RecordBooksErrors -->	
+
+<!-- Search -->
+	<div data-role="page" id="search">
+		<div data-role="header"  data-position="fixed">
+			<div>
+				<a href="#home" alt="home" data-inline="true" data-ajax="false">
+					<img src="images/BookTrackerLogo.png" height="60" width="160" data-inline="true" />
+				</a>
+				<label data-inline="true">Search</label>		
+			</div>
+		</div>  
+			
+		<div data-role="content" >
+			<div data-role="collapsible-set" data-theme="a" >
+				<ul data-role="listview" data-inset="true" data-filter="true">
+					<li data-role="list-divider" >Non-Fiction</li>
+					<li>
+						<img src="images/Art.png" />
+						<h4>Art & Photography</h4>
+						<p>Currently there are no books listed under this genre</p>
+					</li>
+					<li>
+						<img src="images/Bios.png" />
+						<h4>Biographies & Memoirs</h4>
+						<p>Currently there are no books listed under this genre</p>
+					</li>
+					<li>
+						<img src="images/Computers.png" />
+						<h4>Computers & Technology</h4>
+						<p> Book Title: Javascript Cookbook,  Author: Shelley Powers</p>
+						<p>Book Title: JavaScript in Easy Steps,  Author: Mike McGrath</p>
+						<p>Book Title: Designing Interfaces,  Author: Jenifer Tidwell</p>
+
+					</li>
+					<li>
+						<img src="images/Cookbooks.png" />
+						<h4>Cookbooks, Food & Wine</h4>
+					</li>
+					<li>
+						<img src="images/Crafts.png" />
+						<h4>Crafts, Hobbies & Home</h4>
+						<p>Currently there are no books listed under this genre</p>
+					</li>
+					<li>
+						<img src="images/Education.png" />
+						<h4>Education & Reference</h4>
+						<p>Book Title: Rich Dad, Poor Dad,  Author: Robert T. Kiyosaki</p>
+						<p>Book Title: Dermo,  Author: Edward Topol</p>
+						<p>Book Title: The 21 irrefutable Laws of Leadership,  Author: John C. Maxwell</p>
+						<p>Book Title: Easy Russian Phrasebook & Dictionary,  Author: Ann Rolbin</p>
+
+
+					</li>
+					<li>
+						<img src="images/Health.png" />
+						<h4>Health, Fitness & Dieting</h4>
+					</li>
+					<li>
+						<img src="images/History.png" />
+						<h4>History</h4>
+						<p>Currently there are no books listed under this genre</p>
+					</li>
+					<li>
+						<img src="images/Law.png" />
+						<h4>Law</h4>
+						<p>Currently there are no books listed under this genre</p>
+					</li>
+					<li>
+						<img src="images/Math.png" />
+						<h4>Math & Science</h4>
+						<p>Currently there are no books listed under this genre</p>
+					</li>
+					<li>
+						<img src="images/Medical.png" />
+						<h4>Medical</h4>
+					</li>
+					<li>
+						<img src="images/Parenting.png" />
+						<h4>Parenting & Relationships</h4>
+						<p>Currently there are no books listed under this genre</p>
+					</li>
+					<li>
+						<img src="images/Religion.png" />
+						<h4>Religion & Spirituality</h4>
+					</li>
+					<li>
+						<img src="images/SelfHelp.png" />
+						<h4>Self Help</h4>
+					</li>
+					<li>
+						<img src="images/Sports.png" />
+						<h4>Sports & Outdoors</h4>
+						<p>Currently there are no books listed under this genre</p>
+					</li>
+					<li>
+						<img src="images/Teens.png" />
+						<h4>Teens</h4>
+						<p>Currently there are no books listed under this genre</p>
+					</li>
+					<li>
+						<img src="images/Travel.png" />
+						<h4>Travel</h4>
+						<p>Currently there are no books listed under this genre</p>
+					</li>
+					<li data-role="list-divider">Fiction</li>
+					<li>
+						<img src="images/Childrens.png" />
+						<h4>Children's Books</h4>
+						<p>Currently there are no books listed under this genre</p>
+					</li>
+					<li>
+						<img src="images/Bios.png" />
+						<h4>Biographies & Memoirs</h4>
+						<p>Currently there are no books listed under this genre</p>
+					</li>
+					<li>
+						<img src="images/Horror.png" />
+						<h4>Horror</h4>
+						<p>Currently there are no books listed under this genre</p>
+					</li>
+					<li>
+						<img src="images/Humor.png" />
+						<h4>Humor</h4>
+						<p>Currently there are no books listed under this genre</p>
+					</li>
+					<li>
+						<img src="images/Literature.png" />
+						<h4>Literature & Fiction</h4>
+						<p>Currently there are no books listed under this genre</p>
+					</li>
+					<li>
+						<img src="images/Manga.png" />
+						<h4>Manga & Graphic Novels</h4>
+						<p>Currently there are no books listed under this genre</p>
+					</li>
+					<li>
+						<img src="images/Mystery.png" />
+						<h4>Mystery, Crime, Thriller & Suspense</h4>
+						<p>Currently there are no books listed under this genre</p>
+					</li>
+					<li>
+						<img src="images/Romance.png" />
+						<h4>Romance</h4>
+						<p>Currently there are no books listed under this genre</p>
+					</li>
+					<li>
+						<img src="images/Fantasy.png" />
+						<h4>Sci Fi & Fantasy</h4>
+						<p>Book Title:Burned,  Author: J.F. Lewis</p>
+
+					</li>
+					<li>
+						<img src="images/Western.png" />
+						<h4>Western</h4>
+					</li>
+				</ul>
+			</div>
+		</div>
 	
-	
+		<div data-role="footer" data-position="fixed" data-id="home">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#search" data-role="button" data-mini="true" data-iconpos="right"  value="search" class="search" data-ajax="false">Search</a></li>
+					<li><a href="#browse" data-role="button" data-mini="true" data-iconpos="right"  value="browse" class="browse" data-ajax="false">Browse</a></li>
+					<li><a href="#newsfeed" data-role="button" data-mini="true" data-iconpos="right"  data-ajax="false">RSS Feed</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+<!-- close Search -->
+
 <!-- Browse -->
 	<div data-role="page" id="browse">
 		<div data-role="header"  data-position="fixed">
@@ -740,68 +441,83 @@
 		<div data-role="footer" data-position="fixed" data-id="home">
 			<div data-role="navbar">
 				<ul>
-					<li><a href="#search" data-role="button" data-mini="true" data-iconpos="right"  value="search" id="search" data-ajax="false">Search</a></li>
-					<li><a href="#browse" data-role="button" data-mini="true" data-iconpos="right"  value="browse" id="browse" data-ajax="false">Browse</a></li>
+					<li><a href="#search" data-role="button" data-mini="true" data-iconpos="right"  value="search" class="search" data-ajax="false">Search</a></li>
+					<li><a href="#browse" data-role="button" data-mini="true" data-iconpos="right"  value="browse" class="browse" data-ajax="false">Browse</a></li>
 					<li><a href="#newsfeed" data-role="button" data-mini="true" data-iconpos="right"  data-ajax="false">RSS Feed</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
+<!-- close Browse -->
 
-
-
-<!-- The Library -->
-	<div data-role="page" id="myLibrary">
+<!-- RSSFeed -->
+	<div data-role="page" id="newsfeed">
 		<div data-role="header"  data-position="fixed">
 			<div>
 				<a href="#home" alt="home" data-inline="true" data-ajax="false">
 					<img src="images/BookTrackerLogo.png" height="60" width="160" data-inline="true" />
+				</a>	
+				<label data-inline="true">RSS Feed</label>
+			</div>
+
+		</div>
+
+		<div data-role="content">
+			<div id="rssfeed"></div>
+		</div>
+
+		<div data-role="footer" data-position="fixed" data-id="home">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#search" data-role="button" data-mini="true" data-iconpos="right"  value="search" class="search" data-ajax="false">Search</a></li>
+					<li><a href="#browse" data-role="button" data-mini="true" data-iconpos="right"  value="browse" class="browse" data-ajax="false">Browse</a></li>
+					<li><a href="#newsfeed" data-role="button" data-mini="true" data-iconpos="right"  data-ajax="false">RSS Feed</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+<!-- close RSSFeed -->
+
+<!-- Under Construction Page -->
+	<div data-role="page" id="underConst">
+		<div data-role="header" data-position="fixed">
+			<div>
+				<a href="#home" alt="home" data-inline="true" data-ajax="false">
+					<img src="images/BookTrackerLogo.png" height="60" width="160" data-inline="true" />
 				</a>
-				<label data-inline="true">My Library</label>	
+				<label data-inline="true">Sorry!</label>	
 			</div>
 		</div>
 		
 		<div data-role="content">
- 			<ul id="theLibrary">
-        		//	<li>Loading&hellip;</li>
-    			</ul>
-    		</div>
-    		<button type="button" id="clearLog">Clear Log</button>
-
-	<div data-role="dialog" id="recordbookserrors" >
-		<div data-role="header" data-position="fixed">
-			<h1>Fields Missing</h1>
+			<img src="images/diy_puppy.png"/>
+			<p>Requested Page is Under Construction!</p>
+			<p>Free image courtesy of FreeDigitalPhotos.net</p>
+			<p>Image: <a href="http://www.freedigitalphotos.net" target="_blank">FreeDigitalPhotos.net</a></p>
 		</div>
 		
-		<div data-role="content">
-			<ul>
-				<li>Test</li>
-			</ul>
+		<div data-role="footer" data-position="fixed" data-id="home">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#search" data-role="button" data-mini="true" data-iconpos="right"  value="search" class="search" data-ajax="false">Search</a></li>
+					<li><a href="#browse" data-role="button" data-mini="true" data-iconpos="right"  value="browse" class="browse" data-ajax="false">Browse</a></li>
+					<li><a href="#newsfeed" data-role="button" data-mini="true" data-iconpos="right"  data-ajax="false">RSS Feed</a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
+<!-- close Under Construction Page -->
 	
-
-
-
 
 	<!-- JavaScript under here -->
-	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
-  
+	<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
      <script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.core.min.js"></script>
-    <script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.calbox.min.js"></script>
-     <!--<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/i18n/jquery.mobile.datebox.i18n.en_US.utf8.js"></script>-->
+     <script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.calbox.min.js"></script>
      <script type="text/javascript" src="js/libs/RssFeed.js"></script>
 	<script type="text/javascript" src="js/libs/RssFeeder.js"></script>
-	<!--<script type="text/javascript" src="js/jqm-datebox.mode.datebox.min.js"></script>-->
 	<script type="text/javascript" src="js/libs/jquery.validate.min.js"></script>
-	<script type="text/javascript" src="js/json.js"></script>
-<!--	<script type="text/javascript" src="js/mainJS.js"></script>-->
 	<script type="text/javascript" src="js/main.js"></script>
-	
-	
-	
-	
+
 </body>
 </html>
-
